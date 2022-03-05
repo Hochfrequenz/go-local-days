@@ -7,4 +7,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 )
 
-replace github.com/hochfrequenz/go-german-time/german_time => ./german_time
+replace (
+	github.com/hochfrequenz/go-german-time/local_days => ./local_days
+	github.com/hochfrequenz/go-german-time/germany => ./germany
+)

@@ -1,0 +1,11 @@
+package germany
+
+import (
+	"github.com/hochfrequenz/go-german-time/local_days"
+)
+
+// NewGermanCalculator returns a converter that works for Germany. Internally it's based on the local_days.NewTimeZoneBasedLocalTimeConverter and tzdata for "Europe/Berlin".
+func NewGermanCalculator() local_days.LocalDaysCalculator {
+	const zoneName = "Europe/Berlin"
+	return local_days.NewTimeZoneBasedLocalTimeConverter(zoneName)
+}
