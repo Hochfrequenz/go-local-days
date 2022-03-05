@@ -28,8 +28,6 @@ func TestInit(t *testing.T) {
  Add Local Day Tests
 **********************/
 
-const zoneName = "Europe/Berlin"
-
 // Test_Add_Local_Day_Normal_GET tests that adding works as expected when both source time and target time are in UTC+1 (MEZ/CET).
 func (s *Suite) Test_Add_Local_Day_Normal_GET() {
 	berlin := germany.NewGermanCalculator()
@@ -225,18 +223,16 @@ func (s *Suite) Test_Start_Of_Next_Month_In_Localy_CEST_To_CET_Transition() {
  Local Weekday
 ***************/
 
-// Test_Local_Weekday_CET tests that weekday is correct in UTC+1 (CET/MEZ)
-func (s *Suite) Test_Local_Weekday_CET() {
+// Test_Local_Weekday tests that weekday is correct in UTC+1 (CET/MEZ) adn UTC+2 (CEST/MESZ)
+func (s *Suite) Test_Local_Weekday() {
 	berlin := germany.NewGermanCalculator()
+	// CET
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 11, 15, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Tuesday))
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 11, 16, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Wednesday))
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 11, 16, 23, 0, 0, 0, time.UTC)), is.EqualTo(time.Thursday))
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 10, 30, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Sunday))
-}
 
-// Test_Local_Weekday_CEST tests that weekday is correct in UTC+2 (CEST/MESZ)
-func (s *Suite) Test_Local_Weekday_CEST() {
-	berlin := germany.NewGermanCalculator()
+	// CEST
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 6, 15, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Wednesday))
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 6, 16, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Thursday))
 	then.AssertThat(s.T(), berlin.GetLocalWeekday(time.Date(2022, 6, 16, 22, 0, 0, 0, time.UTC)), is.EqualTo(time.Friday))
