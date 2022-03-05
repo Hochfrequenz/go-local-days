@@ -54,6 +54,11 @@ func StartOfNextGermanMonth(timestamp time.Time) time.Time {
 	return startOfNextMonthInGermany.UTC()
 }
 
+// GetGermanWeekday returns the weekday of the given timestamp in Germany.
+func GetGermanWeekday(timestamp time.Time) time.Weekday {
+	return toGermanTime(timestamp).Weekday()
+}
+
 // NextGermanWeekday returns the start of the next German weekday (as specified) in UTC. The result is up to 7 days later than the given timestamp. If e.g. providing a tuesday and requesting the next tuesday, the result will be the timestamp + 7 German days
 func NextGermanWeekday(timestamp time.Time, weekday time.Weekday) time.Time {
 	germanTime := StartOfNextGermanDay(timestamp).In(getBerlinLocation())

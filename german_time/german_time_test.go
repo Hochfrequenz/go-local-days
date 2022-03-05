@@ -197,6 +197,26 @@ func (s *Suite) Test_Start_Of_Next_Month_In_Germany_CEST_To_CET_Transition() {
 	then.AssertThat(s.T(), actual, is.EqualTo(time.Date(2022, 10, 31, 23, 0, 0, 0, time.UTC)))
 }
 
+/****************
+ German Weekday
+***************/
+
+// Test_German_Weekday_CET tests that weekday is correct in UTC+1 (CET/MEZ)
+func (s *Suite) Test_German_Weekday_CET() {
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 11, 15, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Tuesday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 11, 16, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Wednesday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 11, 16, 23, 0, 0, 0, time.UTC)), is.EqualTo(time.Thursday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 10, 30, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Sunday))
+}
+
+// Test_German_Weekday_CEST tests that weekday is correct in UTC+2 (CEST/MESZ)
+func (s *Suite) Test_German_Weekday_CEST() {
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 6, 15, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Wednesday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 6, 16, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Thursday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 6, 16, 22, 0, 0, 0, time.UTC)), is.EqualTo(time.Friday))
+	then.AssertThat(s.T(), german_time.GetGermanWeekday(time.Date(2022, 3, 27, 0, 0, 0, 0, time.UTC)), is.EqualTo(time.Sunday))
+}
+
 /****************************
 Start of Next German Weekday
 ****************************/
