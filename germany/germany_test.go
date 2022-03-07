@@ -3,7 +3,7 @@ package germany_test
 import (
 	"github.com/corbym/gocrest/is"
 	"github.com/corbym/gocrest/then"
-	"github.com/hochfrequenz/go-german-time/germany"
+	"github.com/hochfrequenz/go-local-days/germany"
 	"github.com/stretchr/testify/suite"
 	"testing"
 	"time"
