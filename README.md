@@ -1,8 +1,8 @@
 # go-local-days
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/hochfrequenz/go-local-days.svg)](https://pkg.go.dev/github.com/hochfrequenz/go-local-days)
-![Unittest status badge](https://github.com/Hochfrequenz/go-local-days/workflows/Unittests/badge.svg)
-![Linter status badge](https://github.com/Hochfrequenz/go-local-days/workflows/golangci-lint/badge.svg)
+![Unittest status badge](https://github.com/hochfrequenz/go-local-days/workflows/Unittests/badge.svg)
+![Linter status badge](https://github.com/hochfrequenz/go-local-days/workflows/golangci-lint/badge.svg)
 
 Timezones are annoying and converting between UTC and local times is error-prone.
 
@@ -18,7 +18,7 @@ The package also comes with ~30 unittests, half of them pretty easy and straight
 ## Installation
 
 ```bash
-go get github.com/Hochfrequenz/go-local-days
+go get github.com/hochfrequenz/go-local-days
 ```
 
 ## Usage Examples
