@@ -1,4 +1,4 @@
-module github.com/hochfrequenz/go-german-time
+module github.com/hochfrequenz/go-local-days
 
 go 1.16
 
@@ -8,6 +8,6 @@ require (
 )
 
 replace (
-	github.com/hochfrequenz/go-german-time/local_days => ./local_days
-	github.com/hochfrequenz/go-german-time/germany => ./germany
+	github.com/hochfrequenz/go-local-days/local_days => ./local_days
+	github.com/hochfrequenz/go-local-days/germany => ./germany
 )
