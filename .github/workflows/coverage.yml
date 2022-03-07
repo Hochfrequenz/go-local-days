@@ -21,4 +21,4 @@ jobs:
         uses: VeryGoodOpenSource/very_good_coverage@v1.1.1
         with:
           path: "coverage.lcov"
-          min_coverage: 88 # the plan is to increase this with time
+          min_coverage: 90 # is <100% because the log->panic path is not unittested

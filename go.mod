@@ -1,4 +1,4 @@
-module github.com/go-template-repository
+module github.com/hochfrequenz/go-german-time
 
 go 1.16
 
@@ -7,4 +7,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 )
 
-replace github.com/hochfrequenz/go-template-repository/foo => ./foo
+replace (
+	github.com/hochfrequenz/go-german-time/local_days => ./local_days
+	github.com/hochfrequenz/go-german-time/germany => ./germany
+)
