@@ -2,10 +2,14 @@
 
 Timezones are annoying and converting between UTC and local times is error-prone.
 
-The package `go-local-time` provides easy to use helper functions that are useful if your business logic relies on a local calendar but your application internally uses UTC (which it hopefully does).
-The package does not contain any rocket science; In fact all functions are shorter than 5 lines of code, and you could probably implement them all by yourself in less than one hour.
+The package `go-local-time` provides easy to use helper functions that are useful if your business logic relies on local date times but your application internally uses UTC (which it absolutely should).
+
+## Why a package for such trivial computations?
+This package does not contain any rocket science; In fact all functions are shorter than 5 lines of code, and you could probably implement them all by yourself in less than one or two hours.
 But the package still saves you from thinking about stuff you do not want to think about and that would bloat your code.
-It also comes with ~30 unittests, half of them pretty easy, half of them addressing edge cases around the transition to/from daylight saving time.
+
+It saves you from re-inventing the wheel for a problem that is already solved.
+The package also comes with ~30 unittests, half of them pretty easy and straight forward but the other half of them addressing edge cases around the transition to/from daylight saving time.
 
 ## Installation
 

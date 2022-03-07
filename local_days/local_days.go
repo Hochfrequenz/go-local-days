@@ -21,6 +21,16 @@ type locationBasedLocalTimeConverter struct {
 	location *time.Location
 }
 
+// ToLocalTimeConverter contains a method to convert a time into a local time. This will, in most cases, happen on the basis of timezone data, but you are free to write your own conversion, although you're probably missing out on details at one point.
+type ToLocalTimeConverter interface {
+	// toLocalTime converts a timestamp to a "local" time by adjusting date, time and UTC-offset. The actual point in time in UTC or Unix does _not_ change.
+	toLocalTime(timestamp time.Time) time.Time
+}
+
+func (l locationBasedLocalTimeConverter) toLocalTime(timestamp time.Time) time.Time {
+	return timestamp.In(l.location)
+}
+
 // LocalDaysCalculator is an interface that encapsulates common date time operations that involve local date times.
 type LocalDaysCalculator interface {
 	// AddLocalDays converts timestamp to local time, then adds 1 day and returns UTC. This will effectively add 24h on 363 out of 365 cases. But on the days on which the calendar switches from Daylight saving time (DST) to "normal" time or vice versa it might add 25 or 23 hours.
@@ -42,10 +52,6 @@ type LocalDaysCalculator interface {
 }
 
 // the following implementations are tested by the package "germany"
-
-func (l locationBasedLocalTimeConverter) toLocalTime(timestamp time.Time) time.Time {
-	return timestamp.In(l.location)
-}
 
 func (l locationBasedLocalTimeConverter) AddLocalDays(timestamp time.Time, number int) time.Time {
 	return l.toLocalTime(timestamp).AddDate(0, 0, number).UTC()
