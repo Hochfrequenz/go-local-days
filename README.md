@@ -25,7 +25,7 @@ go get github.com/hochfrequenz/go-local-days
 
 The package contains a general implementation that can easily be adapted to your local time zone.
 
-```
+```go
 package main
 
 import (
