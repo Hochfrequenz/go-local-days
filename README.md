@@ -22,13 +22,57 @@ go get github.com/hochfrequenz/go-local-days
 ```
 
 ## Usage Examples
-The package contains a general implementation that can easily be adapted to your local time zone.
-It provides a specific implementation for Germany which is used to unit test the general implementation. 
 
-<!-- todo: add go playground example here -->
+The package contains a general implementation that can easily be adapted to your local time zone.
+
+```
+package main
+
+import (
+	"fmt"
+	"github.com/hochfrequenz/go-local-days/local_days"
+	"time"
+)
+
+func main() {
+	const zoneName = "Europe/Berlin"
+	berlin := local_days.NewTimeZoneBasedLocalTimeConverter(zoneName)
+	dateInGermanDaylightSavingTime := time.Date(2022, 10, 29, 10, 0, 0, 0, time.UTC) // local time in Germany: UTC+2
+	theNextDayAtTheSameTimeInGermany := berlin.AddLocalDays(dateInGermanDaylightSavingTime, 1)
+	fmt.Println(theNextDayAtTheSameTimeInGermany) // 2022-10-30 11:00:00 +0000 UTC (because this is UTC+1)
+	// note that the hour switched from 10 to 11 because the "local day" in Germany has 25 hours on that day
+}
+```
+[Go Playground](https://play.golang.com/p/JPlItKzIpK7)
+
+For more code snippets, see the extensive [tests with examples from Germany](germany/germany_test.go).
 
 ### Conventions
+
 All times returned by the packages function in `LocalDaysCalculator` are in UTC because the purpose of the package is to spare you from dealing with any non-UTC times.
+
+### Full List of Features
+
+See the `LocalDaysCalculator` interface:
+
+```go
+// AddLocalDays converts timestamp to local time, then adds 1 day and returns UTC. This will effectively add 24h on 363 out of 365 cases. But on the days on which the calendar switches from Daylight saving time (DST) to "normal" time or vice versa it might add 25 or 23 hours.
+AddLocalDays(timestamp time.Time, number int) time.Time
+// StartOfLocalDay converts timestamp to local time, then sets hour, minute and seconds to 0 and returns as UTC. The return value is always <= the given timestamp.
+StartOfLocalDay(timestamp time.Time) time.Time
+// StartOfNextLocalDay converts timestamp to local time, then returns the next start of local day (midnight, 00:00am local time) as UTC. The return value is always > the given timestamp.
+StartOfNextLocalDay(timestamp time.Time) time.Time
+// StartOfLocalMonth converts timestamp to local time, then returns the start of the local month (day, hours, minutes, seconds=0) as UTC. The return value is always <= the given timestamp.
+StartOfLocalMonth(timestamp time.Time) time.Time
+// StartOfNextLocalMonth converts timestamp to local time, then returns the start of the next local month (day, hours, minutes, seconds=0) as UTC. The return value is always > the given timestamp.
+StartOfNextLocalMonth(timestamp time.Time) time.Time
+// GetLocalWeekday returns the weekday of the given timestamp in local timezone.
+GetLocalWeekday(timestamp time.Time) time.Weekday
+// NextLocalWeekday returns the start of the next local weekday (as specified) in UTC. The result always > than the given timestamp. It might be up to 7 days later than the given timestamp. If e.g. providing a tuesday and requesting the next tuesday, the result will be the timestamp + 7 Local days
+NextLocalWeekday(timestamp time.Time, weekday time.Weekday) time.Time
+// IsLocalMidnight returns true if and only if timestamp is midnight in local time
+IsLocalMidnight(timestamp time.Time) bool
+```
 
 ## Implicit Requirements
 

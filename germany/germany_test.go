@@ -9,21 +9,6 @@ import (
 	"time"
 )
 
-type Suite struct {
-	suite.Suite
-}
-
-// SetupSuite sets up the tests
-func (s *Suite) SetupSuite() {
-}
-
-func (s *Suite) AfterTest(_, _ string) {
-}
-
-func TestInit(t *testing.T) {
-	suite.Run(t, new(Suite))
-}
-
 /*********************
  Add Local Day Tests
 **********************/
@@ -305,4 +290,22 @@ func (s *Suite) Test_Is_Local_Midnight_CEST() {
 
 	notMidnight := time.Date(2022, 5, 5, 0, 0, 0, 0, time.UTC)
 	then.AssertThat(s.T(), berlin.IsLocalMidnight(notMidnight), is.False())
+}
+
+// ----------------------------
+// test framework boiler plate
+// ---------------------------
+type Suite struct {
+	suite.Suite
+}
+
+// SetupSuite sets up the tests
+func (s *Suite) SetupSuite() {
+}
+
+func (s *Suite) AfterTest(_, _ string) {
+}
+
+func TestInit(t *testing.T) {
+	suite.Run(t, new(Suite))
 }
