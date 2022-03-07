@@ -1,5 +1,9 @@
 # go-local-days
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/hochfrequenz/go-local-days.svg)](https://pkg.go.dev/github.com/hochfrequenz/go-local-days)
+![Unittest status badge](https://github.com/Hochfrequenz/go-local-days/workflows/Unittests/badge.svg)
+![Linter status badge](https://github.com/Hochfrequenz/go-local-days/workflows/golangci-lint/badge.svg)
+
 Timezones are annoying and converting between UTC and local times is error-prone.
 
 The package `go-local-time` provides easy to use helper functions that are useful if your business logic relies on local date times but your application internally uses UTC (which it absolutely should).
